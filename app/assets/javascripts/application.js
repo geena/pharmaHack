@@ -16,3 +16,5 @@
 //= require_tree .
 //= require bootstrap
 //= require chart
+//= require app
+//= require data

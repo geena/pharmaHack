@@ -1,0 +1,2 @@
+module PharmaTechHelper
+end

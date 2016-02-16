@@ -97,11 +97,11 @@
   	</div>
 
 
-  	<% @active_orders.each do |order| %>
+  	<% @draft_orders.each do |order| %>
   	<div id="skills">
   		<div class="container">
   			<div class="col-lg-4">
-  				<img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+  				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
   			</div>
   			<div class="row centered">
   				<h3><%= order.order_name %></h3>
