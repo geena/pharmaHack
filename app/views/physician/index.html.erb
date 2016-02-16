@@ -51,7 +51,8 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-8 col-lg-offset-2 centered">
-  					<h1>Jarvis</h1>
+            <%= link_to image_tag("appicon.png"), pharma_tech_index_path %>
+            <%= link_to ("<h1>Jarvis</h1><h2>Physician</h2>").html_safe, pharma_tech_index_path %>
   				</div><!-- /col-lg-8 -->
   			</div><!-- /row -->
   		</div> <!-- /container -->
@@ -75,10 +76,10 @@
   				<img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
   			</div>
   			<div class="col-lg-7">
-  				<h3><%= order.order_name %></h3>
-  				<h3><%= order.patient_name %></h3>
-  				<h3><%= order.status %></h3>
-  				<h3><%= order.dosage %></h3>
+  				<h3>Order Name: <%= order.order_name %></h3>
+  				<h3>Patient Name: <%= order.patient_name %></h3>
+  				<h3>Status: <%= order.status %></h3>
+  				<h3>Dosage: <%= order.dosage %></h3>
   			</div>
   		</div>
   		<% end %>
@@ -104,10 +105,10 @@
   				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
   			</div>
   			<div class="row centered">
-  				<h3><%= order.order_name %></h3>
-  				<h3><%= order.patient_name %></h3>
-  				<h3><%= order.status %></h3>
-  				<h3><%= order.dosage %></h3>
+  				<h3>Order Name: <%= order.order_name %></h3>
+  				<h3>Patient Name: <%= order.patient_name %></h3>
+  				<h3>Status: <%= order.status %></h3>
+  				<h3>Dosage: <%= order.dosage %></h3>
   			</div><!-- /row -->
   		</div><!-- /container -->
   	</div><!-- /skills -->
