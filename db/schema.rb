@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216033601) do
+ActiveRecord::Schema.define(version: 20160216040510) do
 
   create_table "orders", force: true do |t|
     t.string   "patient_name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20160216033601) do
     t.text     "dosage",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.text     "image",        limit: 255
   end
 
 end
