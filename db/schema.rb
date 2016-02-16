@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213234814) do
+ActiveRecord::Schema.define(version: 20160216033601) do
 
   create_table "orders", force: true do |t|
     t.string   "patient_name"
-    t.string   "order_name"
+    t.text     "order_name",   limit: 255
     t.string   "status"
-    t.string   "dosage"
+    t.text     "dosage",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
