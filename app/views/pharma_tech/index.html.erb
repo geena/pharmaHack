@@ -29,34 +29,18 @@
 
   <body>
 
-  	<div class="navbar navbar-default navbar-fixed-top">
-  		<div class="container">
-  			<div class="navbar-header">
-  				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-  					<span class="icon-bar"></span>
-  					<span class="icon-bar"></span>
-  					<span class="icon-bar"></span>
-  				</button>
-  			</div>
-  			<div class="navbar-collapse collapse">
-  				<ul class="nav navbar-nav">
-  					<li class="active"><%= link_to 'New Order', new_order_path %></li>
-  				</ul>
-  			</div><!--/.nav-collapse -->
-  		</div>
-  	</div>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div id="hello" class="row">
+          <%= link_to ("<h1>Jarvis</h1><h2>Pharmacy</h2>").html_safe, physician_index_path %>
+        </div>
+      </div>
+    </div>
 
-
-  	<div id="hello">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-8 col-lg-offset-2 centered">
-            <%= link_to image_tag("appicon.png"), physician_index_path %>
-            <%= link_to ("<h1>Jarvis</h1><h2>Pharmacy</h2>").html_safe, physician_index_path %>
-  				</div><!-- /col-lg-8 -->
-  			</div><!-- /row -->
-  		</div> <!-- /container -->
-  	</div><!-- /hello -->
+    <br>
+    <br>
+    <br>
+    <br>
 
   	<div id="green">
   		<div class="container">

@@ -30,43 +30,55 @@
   <body>
 
   	<div class="navbar navbar-default navbar-fixed-top">
-  		<div class="container">
-  			<div class="navbar-header">
-  				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-  					<span class="icon-bar"></span>
-  					<span class="icon-bar"></span>
-  					<span class="icon-bar"></span>
-  				</button>
-  			</div>
-  			<div class="navbar-collapse collapse">
-  				<ul class="nav navbar-nav">
-  					<li class="active"><%= link_to 'New Order', new_order_path %></li>
-  				</ul>
-  			</div><!--/.nav-collapse -->
-  		</div>
+      <div class="container">
+        <div id="hello" class="row">
+          <%= link_to ("<h1>Jarvis</h1><h2>Physician</h2>").html_safe, 
+          pharma_tech_index_path, { style: 'width:250px;display:inline-block;' } %>
+          <div class="nav navbar-nav" style="padding-top:50px;">
+            <li class="active"><%= link_to 'New Order', new_order_path %></li>
+          </div>
+        </div>
+      </div>
   	</div>
 
-
-  	<div id="hello">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-8 col-lg-offset-2 centered">
-            <%= link_to image_tag("appicon.png"), pharma_tech_index_path %>
-            <%= link_to ("<h1>Jarvis</h1><h2>Physician</h2>").html_safe, pharma_tech_index_path %>
-  				</div><!-- /col-lg-8 -->
-  			</div><!-- /row -->
-  		</div> <!-- /container -->
-  	</div><!-- /hello -->
+    <br>
+    <br>
+    <br>
+    <br>
 
   	<div id="green">
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-7">
-  					<h3>PATIENTS</h3>
+  					<h3>TRACKER</h3>
   				</div>
   			</div>
   		</div>
   	</div>
+
+    <div class="container">
+      <% @active_orders.each do |order| %>
+      <div class="row centered mt grid">
+        <div class="mt"></div>
+        <div class="col-lg-4">
+          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+        </div>
+        <div class="col-lg-7">
+          <h3>Order Name: <%= order.order_name %></h3>
+          <h3>Patient Name: <%= order.patient_name %></h3>
+          <h3>Status: <%= order.status %></h3>
+          <h3>Dosage: <%= order.dosage %></h3>
+        </div>
+        <div class="col-lg-7">
+        <ol class="progress-meter">
+          <li class="progress-point done">Submitted</li><li class="progress-point todo">Approved</li><li class="progress-point todo">Administered</li>
+        </ol>
+      </div>
+      </div>
+      <% end %>
+      <div class="row centered mt grid">
+      </div>
+    </div>
 
   	<div class="container">
   		<% @completed_orders.each do |order| %>
@@ -81,6 +93,11 @@
   				<h3>Status: <%= order.status %></h3>
   				<h3>Dosage: <%= order.dosage %></h3>
   			</div>
+        <div class="col-lg-7">
+        <ol class="progress-meter">
+          <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point todo">Administered</li>
+        </ol>
+      </div>
   		</div>
   		<% end %>
   		<div class="row centered mt grid">
@@ -91,7 +108,7 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-7">
-  					<h3>TRACKER</h3>
+  					<h3>REVIEW ORDERS</h3>
   				</div>
   			</div>
   		</div>

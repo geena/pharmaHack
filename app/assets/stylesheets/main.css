@@ -129,12 +129,10 @@ a:after {
 /* hello */
 #hello {
 	width: 100%;
-	padding-top: 150px;
-	padding-bottom: 250px;
 }
 
 #hello h1 {
-	font-size: 90px;
+	font-size: 50px;
 	font-weight: 700;
 	letter-spacing: 3px;
 	color: #74cfae;
@@ -219,4 +217,74 @@ a:after {
 }
 .grid img:hover {
     opacity: 1;
+}
+
+
+.container2 {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.progress-meter {
+  padding: 0;
+}
+
+ol.progress-meter {
+  padding-bottom: 9.5px;
+  list-style-type: none;
+}
+ol.progress-meter li {
+  display: inline-block;
+  text-align: center;
+  text-indent: -19px;
+  height: 36px;
+  width: 24.99%;
+  font-size: 12px;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+}
+ol.progress-meter li:before {
+  position: relative;
+  text-indent: 0;
+  left: -webkit-calc(50% - 9.5px);
+  left: -moz-calc(50% - 9.5px);
+  left: -ms-calc(50% - 9.5px);
+  left: -o-calc(50% - 9.5px);
+  left: calc(50% - 9.5px);
+}
+ol.progress-meter li.done {
+  font-size: 12px;
+}
+ol.progress-meter li.done:before {
+  content: "\2713";
+  height: 19px;
+  width: 19px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+ol.progress-meter li.todo {
+  font-size: 12px;
+}
+ol.progress-meter li.todo:before {
+  content: "\2B24";
+  font-size: 17.1px;
+  bottom: -26.95px;
+  line-height: 18.05px;
+}
+ol.progress-meter li.done {
+  color: black;
+  border-bottom-color: yellowgreen;
+}
+ol.progress-meter li.done:before {
+  color: white;
+  background-color: yellowgreen;
+}
+ol.progress-meter li.todo {
+  color: silver;
+  border-bottom-color: silver;
+}
+ol.progress-meter li.todo:before {
+  color: silver;
 }
