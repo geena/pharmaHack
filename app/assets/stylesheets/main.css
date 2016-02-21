@@ -29,7 +29,8 @@ body {
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway";
-    font-weight: 300;
+    font-weight: 300
+    ;
     color: #333;
 }
 
@@ -239,7 +240,7 @@ ol.progress-meter li {
   text-indent: -19px;
   height: 36px;
   width: 24.99%;
-  font-size: 12px;
+  font-size: 25px;
   border-bottom-width: 4px;
   border-bottom-style: solid;
 }
@@ -253,7 +254,7 @@ ol.progress-meter li:before {
   left: calc(50% - 9.5px);
 }
 ol.progress-meter li.done {
-  font-size: 12px;
+  font-size: 25px;
 }
 ol.progress-meter li.done:before {
   content: "\2713";
@@ -265,7 +266,7 @@ ol.progress-meter li.done:before {
   border-radius: 19px;
 }
 ol.progress-meter li.todo {
-  font-size: 12px;
+  font-size: 25px;
 }
 ol.progress-meter li.todo:before {
   content: "\2B24";
@@ -275,11 +276,11 @@ ol.progress-meter li.todo:before {
 }
 ol.progress-meter li.done {
   color: black;
-  border-bottom-color: yellowgreen;
+  border-bottom-color: #74cfae;
 }
 ol.progress-meter li.done:before {
   color: white;
-  background-color: yellowgreen;
+  background-color: #74cfae;
 }
 ol.progress-meter li.todo {
   color: silver;

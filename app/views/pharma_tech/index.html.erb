@@ -46,7 +46,7 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-7">
-  					<h3>TRACKER</h3>
+  					<h3>SUBMITTED ORDERS</h3>
   				</div>
   			</div>
   		</div>
@@ -57,12 +57,11 @@
   	<div id="skills">
   		<div class="container">
   			<div class="col-lg-4">
-  				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
+  				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_pharma_order_path(order) %>
   			</div>
   			<div class="row centered">
-  				<h3>Order Name: <%= order.order_name %></h3>
-  				<h3>Patient Name: <%= order.patient_name %></h3>
-  				<h3>Status: <%= order.status %></h3>
+  				<h3>Order: <%= order.order_name %></h3>
+  				<h3>Patient: <%= order.patient_name %></h3>
   				<h3>Dosage: <%= order.dosage %></h3>
   			</div><!-- /row -->
   		</div><!-- /container -->

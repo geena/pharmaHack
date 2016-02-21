@@ -59,50 +59,61 @@
     <div class="container">
       <% @active_orders.each do |order| %>
       <div class="row centered mt grid">
-        <div class="mt"></div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
         </div>
-        <div class="col-lg-7">
-          <h3>Order Name: <%= order.order_name %></h3>
-          <h3>Patient Name: <%= order.patient_name %></h3>
-          <h3>Status: <%= order.status %></h3>
-          <h3>Dosage: <%= order.dosage %></h3>
+        <div class="col-lg-3">
+          <h3>Order: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
         </div>
-        <div class="col-lg-7">
-        <ol class="progress-meter">
-          <li class="progress-point done">Submitted</li><li class="progress-point todo">Approved</li><li class="progress-point todo">Administered</li>
-        </ol>
+        <div class="col-lg-6">
+          <ol class="progress-meter">
+            <li class="progress-point done">Submitted</li><li class="progress-point todo">Approved</li><li class="progress-point todo">Administered</li>
+          </ol>
+        </div>
       </div>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <% @approved_orders.each do |order| %>
+      <div class="row centered mt grid">
+        <div class="col-lg-3">
+          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+        </div>
+        <div class="col-lg-3">
+          <h3>Order: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
+        </div>
+        <div class="col-lg-6">
+          <ol class="progress-meter">
+            <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point todo">Administered</li>
+          </ol>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <% @completed_orders.each do |order| %>
+      <div class="row centered mt grid">
+        <div class="col-lg-3">
+          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+        </div>
+        <div class="col-lg-3">
+          <h3>Order: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
+        </div>
+        <div class="col-lg-6">
+          <ol class="progress-meter">
+            <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point done">Administered</li>
+          </ol>
+        </div>
       </div>
       <% end %>
       <div class="row centered mt grid">
       </div>
     </div>
-
-  	<div class="container">
-  		<% @completed_orders.each do |order| %>
-  		<div class="row centered mt grid">
-  			<div class="mt"></div>
-  			<div class="col-lg-4">
-  				<img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
-  			</div>
-  			<div class="col-lg-7">
-  				<h3>Order Name: <%= order.order_name %></h3>
-  				<h3>Patient Name: <%= order.patient_name %></h3>
-  				<h3>Status: <%= order.status %></h3>
-  				<h3>Dosage: <%= order.dosage %></h3>
-  			</div>
-        <div class="col-lg-7">
-        <ol class="progress-meter">
-          <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point todo">Administered</li>
-        </ol>
-      </div>
-  		</div>
-  		<% end %>
-  		<div class="row centered mt grid">
-  		</div>
-  	</div>
 
   	<div id="green">
   		<div class="container">
@@ -114,22 +125,22 @@
   		</div>
   	</div>
 
-
-  	<% @draft_orders.each do |order| %>
-  	<div id="skills">
-  		<div class="container">
-  			<div class="col-lg-4">
-  				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
-  			</div>
-  			<div class="row centered">
-  				<h3>Order Name: <%= order.order_name %></h3>
-  				<h3>Patient Name: <%= order.patient_name %></h3>
-  				<h3>Status: <%= order.status %></h3>
-  				<h3>Dosage: <%= order.dosage %></h3>
-  			</div><!-- /row -->
-  		</div><!-- /container -->
-  	</div><!-- /skills -->
-  	<% end %>
+    <div class="container">
+      <% @draft_orders.each do |order| %>
+      <div class="row centered mt grid">
+        <div class="col-lg-4">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
+        </div>
+        <div class="col-lg-7">
+          <h3>Order: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
+          <h3>Dosage: <%= order.dosage %></h3>
+        </div>
+      </div>
+      <% end %>
+      <div class="row centered mt grid">
+      </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

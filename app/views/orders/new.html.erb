@@ -1,35 +1,37 @@
 <div class="container">
-<h1>New Order</h1>
-<%= form_for :order, url: orders_path do |f| %>
-  <p>
-    <%= f.label :patient_name %><br>
-    <%= f.text_field :patient_name %>
-  </p>
- 
-  <p>
-    <%= f.label :order_name %><br>
-    <%= f.text_field :order_name %>
-  </p>
+  <h1>New Order</h1>
+  <%= form_for :order, url: orders_path do |f| %>
+    <p>
+      <%= f.label :patient_name %><br>
+      <%= f.text_field :patient_name %>
+    </p>
+   
+    <p>
+      <%= f.label :order_name %><br>
+      <%= f.text_field :order_name %>
+    </p>
 
-  <p>
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-  </p>
+    <p>
+      <%= f.label :dosage %><br>
+      <%= f.text_field :dosage %>
+    </p>
 
-  <p>
-    <%= f.label :dosage %><br>
-    <%= f.text_field :dosage %>
-  </p>
+    <p>
+      <%= f.label :time %><br>
+      <%= f.datetime_select :timestamp, :ampm => true %>
+    </p>
 
-  <p>
-  	<%= f.label :image %><br>
-  	<%= f.file_field :image %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+    <p>
+    	<%= f.label :image %><br>
+    	<%= f.file_field :image %>
+    </p>
 
-<h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+    <%= hidden_field_tag 'status', 'active' %>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+
+  <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
 </div>

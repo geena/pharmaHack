@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Review Order</h1>
+   <div class="container">
+      <%= form_for :order, url: pharma_order_path(@order), method: :patch do |f| %>
+      
+      <h2> <%= @order.patient_name %> </h2>
+
+      <p>
+        <%= f.label :order_name %><br>
+        <%= f.text_field :order_name %>
+      </p>
+
+      <p>
+        <%= f.label :dosage %><br>
+        <%= f.text_field :dosage %>
+      </p>
+
+      <p>
+        <%= f.submit name: "status", value: "Reject Order" %>
+      </p>
+     
+      <p>
+        <%= f.submit name: "status", value: "Approve Order" %>
+      </p>
+     
+    <% end %>
+  </div>
+  <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+</div>

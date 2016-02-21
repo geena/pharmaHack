@@ -2,13 +2,6 @@
 <h1>Edit Order</h1>
  
 <%= form_for :order, url: order_path(@order), method: :patch do |f| %>
-
-    <div id="error_explanation">
-      <h2>
-        The pharmacy technician requires this order to be re-submitted.
-      </h2>
-    </div>
- 
   <p>
     <%= f.label :patient_name %><br>
     <%= f.text_field :patient_name %>
@@ -20,20 +13,12 @@
   </p>
 
   <p>
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-  </p>
-
-  <p>
     <%= f.label :dosage %><br>
     <%= f.text_field :dosage %>
   </p>
-
-  <p>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </p>
  
+  <%= hidden_field_tag 'status', 'active' %>
+  
   <p>
     <%= f.submit %>
   </p>
