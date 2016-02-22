@@ -44,7 +44,8 @@ class PhysicianController < ApplicationController
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosageInstruction"].first["text"] }
+				dosage: order["resource"]["dosageInstruction"].first["text"],
+				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			draft_order = Order.new(order_hash, without_protection: true)
 			draft_orders << draft_order
 			draft_order.save
@@ -62,7 +63,8 @@ class PhysicianController < ApplicationController
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosageInstruction"].first["text"] }
+				dosage: order["resource"]["dosageInstruction"].first["text"],
+				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			active_order = Order.new(order_hash, without_protection: true)
 			active_orders << active_order
 			active_order.save
@@ -80,7 +82,8 @@ class PhysicianController < ApplicationController
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: "approved",
-				dosage: order["resource"]["dosageInstruction"].first["text"] }
+				dosage: order["resource"]["dosageInstruction"].first["text"],
+				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			approved_order = Order.new(order_hash, without_protection: true)
 			approved_orders << approved_order
 			approved_order.save
@@ -98,7 +101,8 @@ class PhysicianController < ApplicationController
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosage"].first["text"] }
+				dosage: order["resource"]["dosage"].first["text"],
+				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			completed_order = Order.new(order_hash, without_protection: true)
 			completed_orders << completed_order
 			completed_order.save

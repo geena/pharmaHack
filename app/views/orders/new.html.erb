@@ -1,5 +1,6 @@
 <div class="container">
   <h1>New Order</h1>
+  <div class="container">
   <%= form_for :order, url: orders_path do |f| %>
     <p>
       <%= f.label :patient_name %><br>
@@ -17,7 +18,7 @@
     </p>
 
     <p>
-      <%= f.label :time %><br>
+      <%= f.label :first_dose_priority %><br>
       <%= f.datetime_select :timestamp, :ampm => true %>
     </p>
 
@@ -32,6 +33,6 @@
       <%= f.submit %>
     </p>
   <% end %>
-
+</div>
   <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
 </div>
