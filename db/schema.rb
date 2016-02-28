@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221045126) do
+ActiveRecord::Schema.define(version: 20160228012627) do
 
   create_table "orders", force: true do |t|
     t.string   "patient_name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160221045126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "image",         limit: 255
-    t.string   "timestamp"
+    t.datetime "timestamp",     limit: 255
     t.text     "instructions"
     t.text     "error_message"
   end

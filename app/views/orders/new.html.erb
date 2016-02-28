@@ -1,15 +1,36 @@
 <div class="container">
   <h1>New Order</h1>
   <div class="container">
+  <script type="text/javascript">
+
+      function ping_test(){
+        document.getElementById('order_order_name').innerHTML = "";
+        var url = "https://rxnav.nlm.nih.gov/REST/drugs?name=" + $('#order_select').val();
+        $.getJSON(url,function(data) { 
+          var complete_results = data.drugGroup.conceptGroup[1].conceptProperties;
+          var select = document.getElementById('order_order_name');
+
+          complete_results.map(function(result) {
+            var opt = document.createElement('option');
+            opt.value = JSON.stringify(result);
+            opt.innerHTML = result.synonym;
+            select.appendChild(opt);
+          }); 
+        });
+      }
+  </script>
+
   <%= form_for :order, url: orders_path do |f| %>
+
     <p>
       <%= f.label :patient_name %><br>
       <%= f.text_field :patient_name %>
     </p>
-   
+
     <p>
       <%= f.label :order_name %><br>
-      <%= f.text_field :order_name %>
+      <%= text_field_tag :order_select, '', :onchange => "ping_test()" %>
+      <%= f.select :order_name, [] %>
     </p>
 
     <p>
@@ -27,7 +48,7 @@
     	<%= f.file_field :image %>
     </p>
 
-    <%= hidden_field_tag 'status', 'active' %>
+    <%= f.hidden_field :status, value: 'active' %>
 
     <p>
       <%= f.submit %>
