@@ -1,4 +1,4 @@
-class Changetimestamp < ActiveRecord::Migration
+class Removeandddtimestamp < ActiveRecord::Migration
   def up
   	remove_column :orders, :timestamp
     add_column :orders, :timestamp, :datetime
