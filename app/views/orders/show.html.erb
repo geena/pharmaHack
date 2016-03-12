@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong>route:</strong>
+  <%= @order.route %>
+</p>
+
+<p>
   <strong>Dosage:</strong>
   <%= @order.dosage %>
 </p>
@@ -17,3 +22,5 @@
   <strong>First Dose Priority:</strong>
   <%= @order.timestamp %>
 </p>
+
+<h1> <%= link_to 'Back', controller: 'physician' %> </h1>

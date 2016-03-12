@@ -6,16 +6,21 @@
       function ping_test(){
         document.getElementById('order_order_name').innerHTML = "";
         var url = "https://rxnav.nlm.nih.gov/REST/drugs?name=" + $('#order_select').val();
-        $.getJSON(url,function(data) { 
-          var complete_results = data.drugGroup.conceptGroup[1].conceptProperties;
-          var select = document.getElementById('order_order_name');
+        $.ajax({
+            crossDomain: true,
+            dataType: "json",
+            url: url,
+            success: function(data) { 
+              var complete_results = data.drugGroup.conceptGroup[1].conceptProperties;
+              var select = document.getElementById('order_order_name');
 
-          complete_results.map(function(result) {
-            var opt = document.createElement('option');
-            opt.value = JSON.stringify(result);
-            opt.innerHTML = result.synonym;
-            select.appendChild(opt);
-          }); 
+              complete_results.map(function(result) {
+                var opt = document.createElement('option');
+                opt.value = JSON.stringify(result);
+                opt.innerHTML = result.name;
+                select.appendChild(opt);
+              }); 
+            }
         });
       }
   </script>
@@ -39,6 +44,11 @@
     </p>
 
     <p>
+      <%= f.label :route %><br>
+      <%= f.text_field :route %>
+    </p>
+
+    <p>
       <%= f.label :first_dose_priority %><br>
       <%= f.datetime_select :timestamp, :ampm => true %>
     </p>
@@ -54,6 +64,8 @@
       <%= f.submit %>
     </p>
   <% end %>
-</div>
+
+<h1><%= flash[:notice] %></h1>
+
   <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
 </div>

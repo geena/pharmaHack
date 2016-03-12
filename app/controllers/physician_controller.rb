@@ -40,12 +40,14 @@ class PhysicianController < ApplicationController
 		response.each do |order|
 			patient_id = order["resource"]["patient"]["reference"].split("/").last
 			patient = get_patient(patient_id)
+			dosage_instruction = order["resource"]["dosageInstruction"].first
 			order_hash = { patient_name: patient["name"].first["text"],
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosageInstruction"].first["text"],
-				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
+				dosage: dosage_instruction["text"],
+				route: dosage_instruction["route"]["text"],
+				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			draft_order = Order.new(order_hash, without_protection: true)
 			draft_orders << draft_order
 			draft_order.save
@@ -59,12 +61,14 @@ class PhysicianController < ApplicationController
 		response.each do |order|
 			patient_id = order["resource"]["patient"]["reference"].split("/").last
 			patient = get_patient(patient_id)
+			dosage_instruction = order["resource"]["dosageInstruction"].first
 			order_hash = { patient_name: patient["name"].first["text"],
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosageInstruction"].first["text"],
-				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
+				dosage: dosage_instruction["route"].to_s,
+				route: dosage_instruction["text"],
+				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			active_order = Order.new(order_hash, without_protection: true)
 			active_orders << active_order
 			active_order.save
@@ -78,12 +82,14 @@ class PhysicianController < ApplicationController
 		response.each do |order|
 			patient_id = order["resource"]["patient"]["reference"].split("/").last
 			patient = get_patient(patient_id)
+			dosage_instruction = order["resource"]["dosageInstruction"].first
 			order_hash = { patient_name: patient["name"].first["text"],
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: "approved",
-				dosage: order["resource"]["dosageInstruction"].first["text"],
-				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
+				dosage: dosage_instruction["text"],
+				route: dosage_instruction["route"]["text"],
+				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			approved_order = Order.new(order_hash, without_protection: true)
 			approved_orders << approved_order
 			approved_order.save
@@ -97,12 +103,14 @@ class PhysicianController < ApplicationController
 		response.each do |order|
 			patient_id = order["resource"]["patient"]["reference"].split("/").last
 			patient = get_patient(patient_id)
+			dosage = order["resource"]["dosage"].first
 			order_hash = { patient_name: patient["name"].first["text"],
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: order["resource"]["dosage"].first["text"],
-				timestamp: order["resource"]["dosageInstruction"].first["scheduledTiming"]["repeat"]["bounds"]["start"] }
+				dosage: dosage["text"],
+				timestamp: order["resource"]["effectivePeriod"]["start"],
+				route: dosage["route"].to_s }
 			completed_order = Order.new(order_hash, without_protection: true)
 			completed_orders << completed_order
 			completed_order.save

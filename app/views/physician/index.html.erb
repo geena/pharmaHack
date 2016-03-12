@@ -60,15 +60,16 @@
       <% @active_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
-          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
           <h3>Order: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
         <div class="col-lg-6">
           <ol class="progress-meter">
-            <li class="progress-point done">Submitted</li><li class="progress-point todo">Approved</li><li class="progress-point todo">Administered</li>
+            <li class="progress-point done"></li><li class="progress-point todo"></li><li class="progress-point todo"></li>
           </ol>
         </div>
       </div>
@@ -79,15 +80,16 @@
       <% @approved_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
-          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
           <h3>Order: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
         <div class="col-lg-6">
           <ol class="progress-meter">
-            <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point todo">Administered</li>
+            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
           </ol>
         </div>
       </div>
@@ -98,15 +100,16 @@
       <% @completed_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
-          <img src="data:image/jpeg;base64,<%= order.image %>" alt="" height="200" width="200">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
           <h3>Order: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
         <div class="col-lg-6">
           <ol class="progress-meter">
-            <li class="progress-point done">Submitted</li><li class="progress-point done">Approved</li><li class="progress-point done">Administered</li>
+            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point done"></li>
           </ol>
         </div>
       </div>
@@ -134,7 +137,7 @@
         <div class="col-lg-7">
           <h3>Order: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
-          <h3>Dosage: <%= order.dosage %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
       </div>
       <% end %>

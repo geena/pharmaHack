@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228021921) do
+ActiveRecord::Schema.define(version: 20160312050752) do
 
   create_table "orders", force: true do |t|
     t.string   "patient_name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160228021921) do
     t.text     "instructions"
     t.text     "error_message"
     t.datetime "timestamp"
+    t.string   "route"
   end
 
 end
