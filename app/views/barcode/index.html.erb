@@ -1,0 +1,16 @@
+<p>
+  <strong>Patient:</strong>
+  <%= @patient.name %>
+</p>
+ 
+<p>
+  <strong>Date of Birth:</strong>
+  <%= @patient.dob %>
+</p>
+
+<p>
+  <strong>Allergies</strong>
+  <%= @patient.allergies %>
+</p>
+
+<h1> <%= link_to 'Continue', new_order_path(:patient => @patient.name) %> </h1>

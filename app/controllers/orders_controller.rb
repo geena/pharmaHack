@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 			@order.image = encoded_image
 		end
 
-		@order.order_name = JSON.parse(params[:order][:order_name])['name'].to_s
+		@order.order_name = JSON.parse(params[:order][:order_name])['synonym'].to_s
 
 		#@drug_interaction = cds_hook(params)
 

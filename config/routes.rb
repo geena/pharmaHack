@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'barcode/index'
+
+  get 'nurse/index'
+
   get 'pharma_tech/index'
 
   get 'physician/index'

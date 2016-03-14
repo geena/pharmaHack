@@ -22,15 +22,17 @@
               }); 
             }
         });
-      }
+      }       
   </script>
 
   <%= form_for :order, url: orders_path do |f| %>
 
     <p>
       <%= f.label :patient_name %><br>
-      <%= f.text_field :patient_name %>
+      <%= f.text_field :patient_name, :value => params[:patient] %>
     </p>
+
+    <%= link_to 'Scan Patient Barcode', barcode_index_path  %>
 
     <p>
       <%= f.label :order_name %><br>

@@ -46,7 +46,7 @@ class PhysicianController < ApplicationController
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
 				dosage: dosage_instruction["text"],
-				route: dosage_instruction["route"]["text"],
+				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			draft_order = Order.new(order_hash, without_protection: true)
 			draft_orders << draft_order
@@ -66,8 +66,8 @@ class PhysicianController < ApplicationController
 				image: patient["photo"].first["data"],
 				order_name: order["resource"]["contained"].first["name"],
 				status: order["resource"]["status"],
-				dosage: dosage_instruction["route"].to_s,
-				route: dosage_instruction["text"],
+				dosage: dosage_instruction["text"],
+				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			active_order = Order.new(order_hash, without_protection: true)
 			active_orders << active_order
@@ -88,7 +88,7 @@ class PhysicianController < ApplicationController
 				order_name: order["resource"]["contained"].first["name"],
 				status: "approved",
 				dosage: dosage_instruction["text"],
-				route: dosage_instruction["route"]["text"],
+				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			approved_order = Order.new(order_hash, without_protection: true)
 			approved_orders << approved_order
@@ -110,7 +110,7 @@ class PhysicianController < ApplicationController
 				status: order["resource"]["status"],
 				dosage: dosage["text"],
 				timestamp: order["resource"]["effectivePeriod"]["start"],
-				route: dosage["route"].to_s }
+				route: dosage["route"] ? dosage["route"]["text"] : "" }
 			completed_order = Order.new(order_hash, without_protection: true)
 			completed_orders << completed_order
 			completed_order.save

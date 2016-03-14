@@ -1,0 +1,2 @@
+module NurseHelper
+end

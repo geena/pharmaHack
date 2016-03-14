@@ -29,13 +29,14 @@
 
   <body>
 
-    <div class="navbar navbar-default navbar-fixed-top">
+  	<div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div id="hello" class="row">
-          <%= link_to ("<h1>Jarvis</h1><h2>Pharmacy</h2>").html_safe, nurse_index_path %>
+          <%= link_to ("<h1>Jarvis</h1><h2>Nurse</h2>").html_safe, 
+          physician_index_path, { style: 'width:250px;display:inline-block;' } %>
         </div>
       </div>
-    </div>
+  	</div>
 
     <br>
     <br>
@@ -46,27 +47,26 @@
   		<div class="container">
   			<div class="row">
   				<div class="col-lg-7">
-  					<h3>SUBMITTED ORDERS</h3>
+  					<h3>ORDERS FOR ADMINISTRATION</h3>
   				</div>
   			</div>
   		</div>
   	</div>
 
-
-  	<% @active_orders.each do |order| %>
-  	<div id="skills">
-  		<div class="container">
-  			<div class="col-lg-4">
-  				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_pharma_order_path(order) %>
-  			</div>
-  			<div class="row centered">
-  				<h3>Order: <%= order.order_name %></h3>
-  				<h3>Patient: <%= order.patient_name %></h3>
-  				<h3>Dosage: <%= order.dosage %></h3>
-  			</div><!-- /row -->
-  		</div><!-- /container -->
-  	</div><!-- /skills -->
-  	<% end %>
+    <% @approved_orders.each do |order| %>
+    <div id="skills">
+      <div class="container">
+        <div class="col-lg-4">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
+        </div>
+        <div class="row centered">
+          <h3>Order: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
+        </div><!-- /row -->
+      </div><!-- /container -->
+    </div><!-- /skills -->
+    <% end %>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
