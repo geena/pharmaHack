@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :pharma_orders
 
+  resources :nurse_orders
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		@order = Order.new(params.require(:order).permit(:order_name, :patient_name, :status, :dosage, :image, :timestamp, :route))
+		@order = Order.new(order_params)
 
 		if params[:order][:image]
 			encoded_image = Base64.encode64(params[:order][:image].read)
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     					:verify => false,
 				    	:body => post_body(params).to_json,
 				    	:headers => { 'Content-Type' => 'application/json;charset=UTF-8',
-				    			  	  'Accept' => 'application/json; text/plain' } )
+				    			  	      'Accept' => 'application/json; text/plain' } )
     end
 
     def post_body(params)
@@ -123,4 +123,9 @@ class OrdersController < ApplicationController
 	def edit
 	  @order = Order.find(params[:id])
 	end
+
+  private
+  def order_params
+    params.require(:order).permit(:order_name, :patient_name, :status, :dosage, :image, :timestamp, :route)
+  end
 end

@@ -1,0 +1,37 @@
+<div class="container">
+<h1>Edit Order</h1>
+ 
+<%= form_for :order, url: order_path(@order), method: :patch do |f| %>
+  <p>
+    <%= f.label :patient_name %><br>
+    <%= f.text_field :patient_name %>
+  </p>
+
+  <%= link_to 'Scan Barcode/Confirm Patient', barcode_index_path(:care_team => "nurse", :order => @order)  %>
+ 
+  <p>
+    <%= f.label :order_name %><br>
+    <%= f.text_field :order_name %>
+  </p>
+
+
+  <p>
+    <%= f.label :dosage %><br>
+    <%= f.text_field :dosage %>
+  </p>
+
+  <p>
+    <%= f.label :route %><br>
+    <%= f.text_field :route %>
+  </p>  
+ 
+  <%= f.hidden_field :status, value: 'completed' %>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
+ 
+<h1> <%= link_to 'Back', controller: 'nurse' %> </h1>
+</div>

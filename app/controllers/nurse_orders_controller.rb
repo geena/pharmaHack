@@ -1,4 +1,4 @@
-class PharmaOrdersController < ApplicationController
+class NurseOrdersController < ApplicationController
 	def update
 	  @order = Order.find(params[:id])
 

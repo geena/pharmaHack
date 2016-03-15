@@ -57,7 +57,7 @@
     <div id="skills">
       <div class="container">
         <div class="col-lg-4">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_nurse_order_path(order) %>
         </div>
         <div class="row centered">
           <h3>Order: <%= order.order_name %></h3>
