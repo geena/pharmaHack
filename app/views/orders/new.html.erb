@@ -1,4 +1,5 @@
-<div class="container">
+
+<div class="container" id="shell">
   <h1>New Order</h1>
   <div class="container">
   <script type="text/javascript">
@@ -22,17 +23,48 @@
               }); 
             }
         });
-      }       
+      }
+
+      $(document).ready(function() {
+          $("#barcode").on("click", function(event) {
+              event.preventDefault(); // don't trigger default
+
+              document.getElementById('shell').style.visibility = 'hidden';
+              document.getElementById('scanimation').style.visibility = 'visible';
+
+              // get the value inside the text field
+              var name = document.getElementById('order_patient_name').value;
+
+              $.ajax({
+                  url: "<%= Rails.application.routes.url_helpers.barcode_index_path %>",
+                  type: 'GET',
+                  dataType: 'html',
+                  data: {care_team:'physician', patient_name:name},
+                  success: function( data ) {
+                    document.getElementById('scanimation').style.visibility = 'hidden';
+                    document.getElementById('shell').style.visibility = 'visible';
+                    $('#barcode_results').replaceWith($('#barcode_results').html(data));
+                    $('#order_patient_name').value = "#{@patient.name}";
+                  },
+               });
+          });
+        });
   </script>
 
   <%= form_for :order, url: orders_path do |f| %>
 
     <p>
       <%= f.label :patient_name %><br>
-      <%= f.text_field :patient_name, :value => params[:patient] %>
+      <%= f.text_field :patient_name %>
     </p>
 
-    <%= link_to 'Scan Patient Barcode', barcode_index_path  %>
+    <p>
+      <button id="barcode">Scan Barcode/Confirm Patient</button>
+    </p>
+
+
+
+    <p id="barcode_results"></p>
 
     <p>
       <%= f.label :order_name %><br>
@@ -69,5 +101,34 @@
 
 <h1><%= flash[:notice] %></h1>
 
-  <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+</div>
+  <h1> <%= link_to "<button>Back</button>".html_safe, controller: 'physician' %> </h1>
+
+<div id="scanimation" class="preloader-scan" style="visibility:hidden;">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+
+    <div class="laser"></div>
+  </ul>
 </div>

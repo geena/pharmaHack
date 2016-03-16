@@ -12,9 +12,3 @@
   <strong>Allergies</strong>
   <%= @patient.allergies %>
 </p>
-
-<% if @care_team =="pharma" %>
-	<h1> <%= link_to 'Confirm Patient', new_order_path(:patient => @patient.name) %> </h1>
-<% elsif @care_team == "nurse" %>
-	<h1> <%= link_to 'Confirm Patient', edit_nurse_order_path(@order) %> </h1>
-<% end %>

@@ -289,3 +289,153 @@ ol.progress-meter li.todo {
 ol.progress-meter li.todo:before {
   color: silver;
 }
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #ddd;
+}
+
+.preloader-scan {
+  position: fixed;
+  max-width: 200px;
+  left: 0;
+  right: 0;
+  top: 10%;
+  margin: 0 auto;
+  height: 100%;
+  text-align: center;
+  color: #333;
+}
+
+.preloader-scan li:nth-child(1) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(2) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(3) {
+  width: 5px;
+}
+
+.preloader-scan li:nth-child(4) {
+  width: 4px;
+}
+
+.preloader-scan li:nth-child(5) {
+  width: 5px;
+}
+
+.preloader-scan li:nth-child(6) {
+  width: 4px;
+}
+
+.preloader-scan li:nth-child(7) {
+  width: 5px;
+}
+
+.preloader-scan li:nth-child(8) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(9) {
+  width: 2px;
+}
+
+.preloader-scan li:nth-child(10) {
+  width: 2px;
+}
+
+.preloader-scan li:nth-child(11) {
+  width: 3px;
+}
+
+.preloader-scan li:nth-child(12) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(13) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(14) {
+  width: 2px;
+}
+
+.preloader-scan li:nth-child(15) {
+  width: 2px;
+}
+
+.preloader-scan li:nth-child(16) {
+  width: 1px;
+}
+
+.preloader-scan li:nth-child(17) {
+  width: 3px;
+}
+
+.preloader-scan li:nth-child(18) {
+  width: 5px;
+}
+
+.preloader-scan li:nth-child(19) {
+  width: 3px;
+}
+
+.preloader-scan li:nth-child(20) {
+  width: 4px;
+}
+
+.preloader-scan li:nth-child(21) {
+  width: 3px;
+}
+
+.preloader-scan li:nth-child(22) {
+  width: 2px;
+}
+
+.preloader-scan li:nth-child(23) {
+  width: 3px;
+}
+
+.preloader-scan li:nth-child(24) {
+  width: 3px;
+}
+
+.preloader-scan ul {
+  height: 100%;
+  list-style-type: none;
+}
+
+.preloader-scan li {
+  display: inline-block;
+  width: 2px;
+  height: 50px;
+  background-color: #000;
+}
+
+.preloader-scan .laser {
+  width: 130%;
+  margin-left: -15%;
+  background-color: red;
+  height: 1px;
+  position: absolute;
+  top: -2.5%;
+  z-index: 3;
+  -webkit-animation: scanning 3s infinite;
+  -moz-animation: scanning 3s infinite;
+  animation: scanning 3s infinite;
+}
+
+@keyframes scanning {
+  50% {
+    -webkit-transform: translateY(75px);
+    -moz-transform: translateY(75px);
+    transform: translateY(75px);
+  }
+}
