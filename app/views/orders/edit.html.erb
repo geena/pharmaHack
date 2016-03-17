@@ -1,6 +1,7 @@
 <div class="container">
 <h1>Edit Order</h1>
- 
+<br>
+<div class="container">
 <%= form_for :order, url: order_path(@order), method: :patch do |f| %>
   <p>
     <%= f.label :patient_name %><br>
@@ -29,6 +30,7 @@
   </p>
  
 <% end %>
+</div>
  
-<h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+<h1> <%= link_to "<button>Back</button>".html_safe, controller: 'physician' %> </h1>
 </div>

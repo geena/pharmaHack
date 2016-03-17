@@ -6,23 +6,41 @@
 
       function ping_test(){
         document.getElementById('order_order_name').innerHTML = "";
-        var url = "https://rxnav.nlm.nih.gov/REST/drugs?name=" + $('#order_select').val();
-        $.ajax({
-            crossDomain: true,
-            dataType: "json",
-            url: url,
-            success: function(data) { 
-              var complete_results = data.drugGroup.conceptGroup[1].conceptProperties;
-              var select = document.getElementById('order_order_name');
+        var drug_name = $('#order_select').val();
 
-              complete_results.map(function(result) {
-                var opt = document.createElement('option');
-                opt.value = JSON.stringify(result);
-                opt.innerHTML = result.name;
-                select.appendChild(opt);
-              }); 
-            }
-        });
+        if (drug_name.length > 3) {
+          var url = "https://rxnav.nlm.nih.gov/REST/approximateTerm?term=" + drug_name + "&maxEntries=1";
+
+            $.ajax({
+                crossDomain: true,
+                dataType: "json",
+                url: url,
+                success: function(data) { 
+                  var complete_results = data.approximateGroup.candidate;
+
+                  complete_results.map(function(result) {
+                    var rxcui = result.rxcui;
+                    var url2 = "https://rxnav.nlm.nih.gov/REST/rxcui/" + rxcui + "/related?tty=SBD";
+                      $.ajax({
+                        crossDomain: true,
+                        dataType: "json",
+                        url: url2,
+                        success: function(data) { 
+                          var results = data.relatedGroup.conceptGroup[0].conceptProperties;
+                          var select = document.getElementById('order_order_name');
+
+                          results.map(function(result) {
+                            var opt = document.createElement('option');
+                            opt.value = JSON.stringify(result);
+                            opt.innerHTML = result.synonym;
+                            select.appendChild(opt);
+                          }); 
+                        }
+                    });
+                  }); 
+                }
+            });
+        }
       }
 
       $(document).ready(function() {
@@ -36,16 +54,21 @@
               var name = document.getElementById('order_patient_name').value;
 
               $.ajax({
-                  url: "<%= Rails.application.routes.url_helpers.barcode_index_path %>",
+                  url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
                   type: 'GET',
                   dataType: 'html',
-                  data: {care_team:'physician', patient_name:name},
+                  data: {patient_name:name},
                   success: function( data ) {
                     document.getElementById('scanimation').style.visibility = 'hidden';
                     document.getElementById('shell').style.visibility = 'visible';
                     $('#barcode_results').replaceWith($('#barcode_results').html(data));
                     $('#order_patient_name').value = "#{@patient.name}";
                   },
+                  error: function(){
+                    document.getElementById('scanimation').style.visibility = 'hidden';
+                    document.getElementById('shell').style.visibility = 'visible';
+                    alert('Could not find patient '.concat(name));
+                  }
                });
           });
         });
@@ -62,13 +85,11 @@
       <button id="barcode">Scan Barcode/Confirm Patient</button>
     </p>
 
-
-
     <p id="barcode_results"></p>
 
     <p>
       <%= f.label :order_name %><br>
-      <%= text_field_tag :order_select, '', :onchange => "ping_test()" %>
+      <%= text_field_tag :order_select, '', :onkeyup => "ping_test()" %>
       <%= f.select :order_name, [] %>
     </p>
 

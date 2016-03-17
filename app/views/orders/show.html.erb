@@ -1,3 +1,7 @@
+<div class="container">
+<h1>Drug Information</h1>
+<br>
+<div class="container">
 <p>
   <strong>Patient:</strong>
   <%= @order.patient_name %>
@@ -22,5 +26,7 @@
   <strong>First Dose Priority:</strong>
   <%= @order.timestamp %>
 </p>
+</div>
 
-<h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+<h1> <%= link_to "<button>Back</button>".html_safe, controller: 'physician' %> </h1>
+</div>

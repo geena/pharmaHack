@@ -14,12 +14,12 @@
 
     <p>
       <%= f.label :order_name %><br>
-      <%= f.text_field :order_name %>
+      <%= f.text_area :order_name %>
     </p>
 
     <p>
       <%= f.label :dosage %><br>
-      <%= f.text_field :dosage %>
+      <%= f.text_area :dosage %>
     </p>
 
     <%= f.hidden_field :status %>
@@ -34,5 +34,5 @@
 
     <% end %>
   </div>
-  <h1> <%= link_to 'Back', controller: 'physician' %> </h1>
+  <h1> <%= link_to "<button>Back</button>".html_safe, controller: 'pharma_tech' %> </h1>
 </div>

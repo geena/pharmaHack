@@ -1,37 +1,136 @@
+<div class="container" id="shell">
+
+<h1>Administer Drug</h1>
 <div class="container">
-<h1>Edit Order</h1>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $("#barcode").on("click", function(event) {
+              event.preventDefault(); // don't trigger default
+
+              document.getElementById('shell').style.visibility = 'hidden';
+              document.getElementById('scanimation').style.visibility = 'visible';
+
+              // get the value inside the text field
+              var name = document.getElementById('patient_name').textContent;
+
+              $.ajax({
+                  url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
+                  type: 'GET',
+                  dataType: 'html',
+                  data: {patient_name:name},
+                  success: function( data ) {
+                    document.getElementById('scanimation').style.visibility = 'hidden';
+                    document.getElementById('order_info').style.visibility = 'visible';
+                    document.getElementById('shell').style.visibility = 'visible';
+                    $('#barcode_results').replaceWith($('#barcode_results').html(data));
+                  },
+                  error: function(){
+                    document.getElementById('scanimation').style.visibility = 'hidden';
+                    document.getElementById('shell').style.visibility = 'visible';
+                    alert('Patient "'.concat("<%= @patient_name %>").concat('" does not match in EHR!'));
+                  }
+               });
+          });
+        });
+
+      $(document).ready(function() {
+          $("#barcode2").on("click", function(event) {
+              event.preventDefault(); // don't trigger default
+
+              document.getElementById('order_info').style.visibility = 'hidden';
+              document.getElementById('shell').style.visibility = 'hidden';
+              document.getElementById('scanimation').style.visibility = 'visible';
+
+              setTimeout(function (){
+
+              document.getElementById('scanimation').style.visibility = 'hidden';
+              document.getElementById('order_info').style.visibility = 'visible';
+              document.getElementById('barcode_results2').style.visibility = 'visible';
+              document.getElementById('shell').style.visibility = 'visible';
+              
+              }, 5000);
+          });
+        });
+  </script>
  
 <%= form_for :order, url: order_path(@order), method: :patch do |f| %>
-  <p>
-    <%= f.label :patient_name %><br>
-    <%= f.text_field :patient_name %>
-  </p>
 
-  <%= link_to 'Scan Barcode/Confirm Patient', barcode_index_path(:care_team => "nurse", :order => @order)  %>
  
   <p>
-    <%= f.label :order_name %><br>
-    <%= f.text_field :order_name %>
+    <h3 id="patient_name" > <%= @order.patient_name %> </h3>
+  </p>
+   
+  <p>
+    <button id="barcode">Scan Barcode/Confirm Patient</button>
   </p>
 
+  <p id="barcode_results"></p>
 
-  <p>
-    <%= f.label :dosage %><br>
-    <%= f.text_field :dosage %>
-  </p>
+  <div id="order_info" style="visibility:hidden;">
 
-  <p>
-    <%= f.label :route %><br>
-    <%= f.text_field :route %>
-  </p>  
- 
-  <%= f.hidden_field :status, value: 'completed' %>
-  
-  <p>
-    <%= f.submit %>
-  </p>
+    <p>
+      <strong>Order:</strong>
+      <%= @order.order_name %>
+    </p>
+
+    <p>
+      <button id="barcode2">Scan Barcode/Confirm Order</button>
+    </p>
+
+  </div>
+
+  <div id="barcode_results2" style="visibility:hidden;">
+
+    <p>
+      <strong>Route:</strong>
+      <%= @order.route %>
+    </p>
+
+    <p>
+      <strong>Dosage:</strong>
+      <%= @order.dosage %>
+    </p>
+
+   
+    <%= f.hidden_field :status, value: 'completed' %>
+    
+    <h2>
+      <%= f.submit "Mark Order Complete" %>
+    </h2>
+
+  </div>
  
 <% end %>
- 
-<h1> <%= link_to 'Back', controller: 'nurse' %> </h1>
+ </div>
+<h1> <%= link_to "<button>Back</button>".html_safe, controller: 'nurse' %> </h1>
+</div>
+
+
+<div id="scanimation" class="preloader-scan" style="visibility:hidden;">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+
+    <div class="laser"></div>
+  </ul>
 </div>
