@@ -62,7 +62,10 @@
                     document.getElementById('scanimation').style.visibility = 'hidden';
                     document.getElementById('shell').style.visibility = 'visible';
                     $('#barcode_results').replaceWith($('#barcode_results').html(data));
-                    $('#order_patient_name').value = "#{@patient.name}";
+
+                    var $response=$(data);
+                    var display_name = $response.filter('#patient_name').text();
+                    $('#order_patient_name').val (display_name);
                   },
                   error: function(){
                     document.getElementById('scanimation').style.visibility = 'hidden';
@@ -120,12 +123,14 @@
     </p>
   <% end %>
 
-<h1><%= flash[:notice] %></h1>
+<% if notice %>
+<h1><%= flash[:notice].join("<br>") %></h1>
+<% end %>
 
 </div>
   <h1> <%= link_to "<button>Back</button>".html_safe, controller: 'physician' %> </h1>
 
-<div id="scanimation" class="preloader-scan" style="visibility:hidden;">
+<div id="scanimation" class="preloader-scan" style="visibility:hidden;float: left;">
   <ul>
     <li></li>
     <li></li>

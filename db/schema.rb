@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314025321) do
+ActiveRecord::Schema.define(version: 20160321140025) do
 
   create_table "orders", force: true do |t|
     t.string   "patient_name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160314025321) do
     t.datetime "timestamp"
     t.string   "route"
   end
+
+  add_index "orders", ["status"], name: "index_orders_on_status"
 
   create_table "patients", force: true do |t|
     t.string   "name"
