@@ -124,7 +124,7 @@
   <% end %>
 
 <% if notice %>
-<h1><%= flash[:notice].join("<br>") %></h1>
+<strong><%= flash[:notice].join("<br>").html_safe %></strong>
 <% end %>
 
 </div>
