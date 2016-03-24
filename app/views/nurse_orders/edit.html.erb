@@ -12,12 +12,14 @@
 
               // get the value inside the text field
               var name = document.getElementById('patient_name').textContent;
+              // get the value inside the text field
+              var dateofbirth = document.getElementById('dateofbirth').textContent;
 
               $.ajax({
                   url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
                   type: 'GET',
                   dataType: 'html',
-                  data: {patient_name:name},
+                  data: {patient_name:name, dob:dateofbirth},
                   success: function( data ) {
                     document.getElementById('scanimation').style.visibility = 'hidden';
                     document.getElementById('order_info').style.visibility = 'visible';
@@ -54,14 +56,17 @@
   </script>
  
 <%= form_for :order, url: order_path(@order), method: :patch do |f| %>
-
- 
-  <p>
-    <h3 id="patient_name" > <%= @order.patient_name %> </h3>
-  </p>
    
   <p>
     <button id="barcode">Scan Barcode/Confirm Patient</button>
+  </p>
+
+    <p>
+    <h3 id="patient_name" > <%= @order.patient_name %> </h3>
+  </p>
+
+  <p>
+    <h3 id="dateofbirth" > <%= @order.dob %> </h3>
   </p>
 
   <p id="barcode_results"></p>

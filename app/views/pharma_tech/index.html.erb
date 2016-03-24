@@ -29,8 +29,8 @@
 
   <body>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top" style="width:100%;">
+      <div class="container" style="width:100%;">
         <div id="hello" class="row">
           <%= link_to ("<h1>Jarvis</h1><h2>Pharmacy</h2>").html_safe, nurse_index_path %>
         </div>
@@ -42,16 +42,11 @@
     <br>
     <br>
 
-  	<div id="green">
-  		<div class="container">
-  			<div class="row">
+  			<div class="row" id="green" style="position:fixed;z-index:9999;width:100%;padding-top:0px;right:0;margin:0 auto;">
   				<div class="col-lg-7">
   					<h3>SUBMITTED ORDERS</h3>
   				</div>
   			</div>
-  		</div>
-  	</div>
-
 
   	<% @active_orders.each do |order| %>
   	<div id="skills">
@@ -60,7 +55,7 @@
   				<%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_pharma_order_path(order) %>
   			</div>
   			<div class="row centered">
-  				<h3>Order: <%= order.order_name %></h3>
+  				<h3>Drug: <%= order.order_name %></h3>
   				<h3>Patient: <%= order.patient_name %></h3>
   				<h3>Dosage: <%= order.dosage %></h3>
   			</div><!-- /row -->

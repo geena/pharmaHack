@@ -52,12 +52,14 @@
 
               // get the value inside the text field
               var name = document.getElementById('order_patient_name').value;
+              // get the value inside the text field
+              var birthdate = document.getElementById('order_dob').value;
 
               $.ajax({
                   url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
                   type: 'GET',
                   dataType: 'html',
-                  data: {patient_name:name},
+                  data: {patient_name:name, dob:birthdate},
                   success: function( data ) {
                     document.getElementById('scanimation').style.visibility = 'hidden';
                     document.getElementById('shell').style.visibility = 'visible';
@@ -65,7 +67,9 @@
 
                     var $response=$(data);
                     var display_name = $response.filter('#patient_name').text();
+                    var display_dob = $response.filter('#dateofbirth').text();
                     $('#order_patient_name').val (display_name);
+                    $('#order_dob').val (display_dob);
                   },
                   error: function(){
                     document.getElementById('scanimation').style.visibility = 'hidden';
@@ -80,18 +84,21 @@
   <%= form_for :order, url: orders_path do |f| %>
 
     <p>
-      <%= f.label :patient_name %><br>
-      <%= f.text_field :patient_name %>
-    </p>
-
-    <p>
       <button id="barcode">Scan Barcode/Confirm Patient</button>
     </p>
 
+    <p>
+      <%= f.label :patient_name %><br>
+      <%= f.text_field :patient_name %>
+    </p>
+    <p>
+      <%= f.label :date_of_birth %><br>
+      <%= f.text_field :dob %>
+    </p>
     <p id="barcode_results"></p>
 
     <p>
-      <%= f.label :order_name %><br>
+      <%= f.label :drug_name %><br>
       <%= text_field_tag :order_select, '', :onkeyup => "ping_test()" %>
       <%= f.select :order_name, [] %>
     </p>

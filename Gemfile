@@ -49,3 +49,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'coffee-script-source', '1.8.0'
 
 gem 'httparty'
+
+gem 'jquery-turbolinks'

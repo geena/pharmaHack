@@ -1,5 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on('click', '#inflight', function(event) {
+
+    if (document.getElementById('ordersinflight').style.display == 'none'){
+      document.getElementById('ordersinflight').style.display = 'block';
+    } else {
+      document.getElementById('ordersinflight').style.display = 'none';
+    }
+
+  });
+});
+
+$(document).ready(function() {
+  $(document).on('click', '#inreview', function(event) {
+
+    if (document.getElementById('ordersinreview').style.display == 'none'){
+      document.getElementById('ordersinflight').style.display = 'none';
+      document.getElementById('ordersinreview').style.display = 'block';
+    } else {
+      document.getElementById('ordersinreview').style.display = 'none';
+    }
+
+  });
+});
+
+$(document).on('click', '#inflight', function(event) {
+
+  if (document.getElementById('ordersinflight').style.display == 'none'){
+    document.getElementById('ordersinflight').style.display = 'block';
+  } else {
+    document.getElementById('ordersinflight').style.display = 'none';
+  }
+
+});
+
+$(document).on('click', '#inreview', function(event) {
+
+  if (document.getElementById('ordersinreview').style.display == 'none'){
+    document.getElementById('ordersinflight').style.display = 'none';
+    document.getElementById('ordersinreview').style.display = 'block';
+  } else {
+    document.getElementById('ordersinreview').style.display = 'none';
+  }
+
+});
+</script>
+
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,13 +78,13 @@
 
   <body>
 
-  	<div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div id="hello" class="row">
+  	<div class="navbar navbar-default navbar-fixed-top"style="width:100%;">
+      <div class="container" style="width:100%;">
+        <div id="hello" class="row" style="width:100%;">
           <%= link_to ("<h1>Jarvis</h1><h2>Physician</h2>").html_safe, 
-          pharma_tech_index_path, { style: 'width:250px;display:inline-block;' } %>
-          <div class="nav navbar-nav" style="padding-top:50px;">
-            <li class="active"><%= link_to 'New Order', new_order_path %></li>
+          pharma_tech_index_path, { style: 'width:50%;display:inline-block;float:left;' } %>
+          <div class="nav navbar-nav" style="padding-top:55px;width:120px;float:right;">
+            <li class="active" style="width:120px;"><%= link_to 'New Order', new_order_path, { style: 'width:120px;display:inline-block;text-align:center;' } %></li>
           </div>
         </div>
       </div>
@@ -46,24 +95,23 @@
     <br>
     <br>
 
-  	<div id="green">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-7">
-  					<h3>ORDERS IN FLIGHT</h3>
+  			<div class="row" id="green" style="position:fixed;z-index:9999;width:100%;padding-top:0px;right:0;margin:0 auto;">
+  				<div id="inflight" class="col-xs-6 centered" style="border-right: 3px solid #ccc;">
+  					<h3> ORDERS IN FLIGHT</h3>
   				</div>
+          <div id="inreview" class="col-xs-6 centered">
+            <h3>ORDERS FOR REVIEW</h3>
+          </div>
   			</div>
-  		</div>
-  	</div>
 
-    <div class="container">
+    <div class="container" id="ordersinflight" style="display:none;padding-top:80px;">
       <% @active_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
           <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
-          <h3>Order: <%= order.order_name %></h3>
+          <h3>Drug: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
           <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
@@ -74,16 +122,14 @@
         </div>
       </div>
       <% end %>
-    </div>
 
-    <div class="container">
       <% @approved_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
           <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
-          <h3>Order: <%= order.order_name %></h3>
+          <h3>Drug: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
           <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
@@ -94,16 +140,14 @@
         </div>
       </div>
       <% end %>
-    </div>
 
-    <div class="container">
       <% @completed_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-3">
           <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
         </div>
         <div class="col-lg-3">
-          <h3>Order: <%= order.order_name %></h3>
+          <h3>Drug: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
           <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
@@ -118,24 +162,14 @@
       </div>
     </div>
 
-  	<div id="green">
-  		<div class="container">
-  			<div class="row">
-  				<div class="col-lg-7">
-  					<h3>ORDERS FOR REVIEW</h3>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
-
-    <div class="container">
+    <div class="container" id="ordersinreview" style="display:none;padding-top:80px;">
       <% @draft_orders.each do |order| %>
       <div class="row centered mt grid">
         <div class="col-lg-4">
           <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
         </div>
         <div class="col-lg-7">
-          <h3>Order: <%= order.order_name %></h3>
+          <h3>Drug: <%= order.order_name %></h3>
           <h3>Patient: <%= order.patient_name %></h3>
           <h3>First Dose Priority: <%= order.timestamp %></h3>
         </div>
