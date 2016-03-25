@@ -111,6 +111,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:order_name, :patient_name, :status, :dosage, :image, :timestamp, :route)
+    params.require(:order).permit(:order_name, :frequency, :patient_name, :status, :dosage, :image, :timestamp, :route)
   end
 end

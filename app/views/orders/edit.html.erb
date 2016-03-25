@@ -9,7 +9,7 @@
   </p>
  
   <p>
-    <%= f.label :order_name %><br>
+    <%= f.label :drug_name %><br>
     <%= f.text_field :order_name %>
   </p>
 
@@ -21,6 +21,11 @@
   <p>
     <%= f.label :route %><br>
     <%= f.text_field :route %>
+  </p>  
+
+  <p>
+    <%= f.label :frequency %><br>
+    <%= f.text_field :frequency %>
   </p>  
  
   <%= f.hidden_field :status, value: 'active' %>

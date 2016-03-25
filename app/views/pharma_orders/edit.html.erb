@@ -13,13 +13,28 @@
     <h2> <%= @order.patient_name %> </h2>
 
     <p>
-      <%= f.label :order_name %><br>
+      <%= f.label :drug_name %><br>
       <%= f.text_area :order_name %>
     </p>
 
     <p>
       <%= f.label :dosage %><br>
       <%= f.text_area :dosage %>
+    </p>
+
+    <p>
+      <%= f.label :route %><br>
+      <%= f.text_field :route %>
+    </p>
+
+    <p>
+      <%= f.label :frequency %><br>
+      <%= f.text_field :frequency %>
+    </p>
+
+    <p>
+      <%= f.label :first_dose_priority %><br>
+      <%= f.datetime_select :timestamp, :ampm => true %>
     </p>
 
     <%= f.hidden_field :status %>

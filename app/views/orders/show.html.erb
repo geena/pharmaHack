@@ -3,12 +3,17 @@
 <br>
 <div class="container">
 <p>
-  <strong>Patient:</strong>
+  <strong>Patient Name:</strong>
   <%= @order.patient_name %>
+</p>
+
+<p>
+  <strong>Patient Date of Birth:</strong>
+  <%= @order.dob %>
 </p>
  
 <p>
-  <strong>Order:</strong>
+  <strong>Drug:</strong>
   <%= @order.order_name %>
 </p>
 
@@ -20,6 +25,11 @@
 <p>
   <strong>Dosage:</strong>
   <%= @order.dosage %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @order.frequency %>
 </p>
 
 <p>

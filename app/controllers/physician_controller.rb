@@ -47,6 +47,7 @@ class PhysicianController < ApplicationController
 				dob: patient["birthDate"],
 				status: order["resource"]["status"],
 				dosage: dosage_instruction["text"],
+				frequency: dosage_instruction["scheduledTiming"]["code"]["text"],
 				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			draft_order = Order.new(order_hash, without_protection: true)
@@ -69,6 +70,7 @@ class PhysicianController < ApplicationController
 				dob: patient["birthDate"],
 				status: order["resource"]["status"],
 				dosage: dosage_instruction["text"],
+				frequency: dosage_instruction["scheduledTiming"]["code"]["text"],
 				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			active_order = Order.new(order_hash, without_protection: true)
@@ -91,6 +93,7 @@ class PhysicianController < ApplicationController
 				dob: patient["birthDate"],
 				status: "approved",
 				dosage: dosage_instruction["text"],
+				frequency: dosage_instruction["scheduledTiming"]["code"]["text"],
 				route: dosage_instruction["route"] ? dosage_instruction["route"]["text"] : "",
 				timestamp: dosage_instruction["scheduledTiming"]["repeat"]["bounds"]["start"] }
 			approved_order = Order.new(order_hash, without_protection: true)
@@ -112,6 +115,7 @@ class PhysicianController < ApplicationController
 				order_name: order["resource"]["contained"].first["name"],
 				dob: patient["birthDate"],
 				status: order["resource"]["status"],
+				frequency: dosage["schedule"]["code"]["text"],
 				dosage: dosage["text"],
 				timestamp: order["resource"]["effectivePeriod"]["start"],
 				route: dosage["route"] ? dosage["route"]["text"] : "" }

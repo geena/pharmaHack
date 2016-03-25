@@ -5,7 +5,7 @@ class BarcodeController < ApplicationController
   			@dob = "1963-06-17"
   		else
   			@patient_name = params[:patient_name].strip.split(",").first.split(" ").first
-  			@dob = params[:dob]
+  			@dob = params[:dob].strip
   		end
 
 	  	@response = HTTParty.get("https://fhir-open.sandboxcernerpowerchart.com/may2015/d075cf8b-3261-481d-97e5-ba6c48d3b41f/Patient?name=#{@patient_name}&birthdate=#{@dob}&_count=1",

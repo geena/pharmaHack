@@ -74,7 +74,7 @@
   <div id="order_info" style="visibility:hidden;">
 
     <p>
-      <strong>Order:</strong>
+      <strong>Drug:</strong>
       <%= @order.order_name %>
     </p>
 
@@ -99,9 +99,9 @@
    
     <%= f.hidden_field :status, value: 'completed' %>
     
-    <h2>
+    <p>
       <%= f.submit "Mark Order Complete" %>
-    </h2>
+    </p>
 
   </div>
  

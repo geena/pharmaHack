@@ -53,7 +53,13 @@
               // get the value inside the text field
               var name = document.getElementById('order_patient_name').value;
               // get the value inside the text field
-              var birthdate = document.getElementById('order_dob').value;
+              var datefield = document.getElementById('order_dob').value;
+              if (datefield) {
+                var d = new Date(datefield);
+                var birthdate = d.toISOString().substring(0, 10);
+              } else {
+                var birthdate = "";
+              }
 
               $.ajax({
                   url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
@@ -111,6 +117,11 @@
     <p>
       <%= f.label :route %><br>
       <%= f.text_field :route %>
+    </p>
+
+    <p>
+      <%= f.label :frequency %><br>
+      <%= f.text_field :frequency %>
     </p>
 
     <p>
