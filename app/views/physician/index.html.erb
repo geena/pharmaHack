@@ -3,51 +3,130 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $(document).on('click', '#inflight', function(event) {
-
     if (document.getElementById('ordersinflight').style.display == 'none'){
       document.getElementById('ordersinflight').style.display = 'block';
     } else {
-      document.getElementById('ordersinflight').style.display = 'none';
+      if (document.getElementById('ordersinflight').style.display == 'block') {
+        document.getElementById('ordersinflight').style.display = 'none';
+      } else {
+        $('#loading').show();
+        if (document.getElementById('ordersinreview').style.display == 'block'){
+          document.getElementById('ordersinreview').style.display = 'none';
+        }
+        document.getElementById('ordersinflight').style.display = 'block';
+        $.ajax({
+          url: "<%= Rails.application.routes.url_helpers.physician_inflight_path %>",
+          type: 'GET',
+          dataType: 'html',
+          success: function( data ) {
+            $('#ordersinflight').replaceWith($('#ordersinflight').html(data));
+          },
+          error: function(){
+            alert('There are no current orders in flight.');
+          },
+          complete: function(){
+            $('#loading').hide();
+          }
+        });
+      }
     }
-
   });
 });
 
 $(document).ready(function() {
   $(document).on('click', '#inreview', function(event) {
-
     if (document.getElementById('ordersinreview').style.display == 'none'){
-      document.getElementById('ordersinflight').style.display = 'none';
       document.getElementById('ordersinreview').style.display = 'block';
     } else {
-      document.getElementById('ordersinreview').style.display = 'none';
+      if (document.getElementById('ordersinreview').style.display == 'block') {
+        document.getElementById('ordersinreview').style.display = 'none';
+      } else {
+        $('#loading').show();
+        if (document.getElementById('ordersinflight').style.display == 'block'){
+          document.getElementById('ordersinflight').style.display = 'none';
+        }
+        document.getElementById('ordersinreview').style.display = 'block';
+        $.ajax({
+          url: "<%= Rails.application.routes.url_helpers.physician_inreview_path %>",
+          type: 'GET',
+          dataType: 'html',
+          success: function( data ) {
+            $('#ordersinreview').replaceWith($('#ordersinreview').html(data));
+          },
+          error: function(){
+            alert('There are no current orders in review.');
+          },
+          complete: function(){
+            $('#loading').hide();
+          }
+        });
+      }
     }
-
   });
 });
 
 $(document).on('click', '#inflight', function(event) {
-
   if (document.getElementById('ordersinflight').style.display == 'none'){
     document.getElementById('ordersinflight').style.display = 'block';
   } else {
-    document.getElementById('ordersinflight').style.display = 'none';
+    if (document.getElementById('ordersinflight').style.display == 'block') {
+      document.getElementById('ordersinflight').style.display = 'none';
+    } else {
+      $('#loading').show();
+      if (document.getElementById('ordersinreview').style.display == 'block'){
+        document.getElementById('ordersinreview').style.display = 'none';
+      }
+      document.getElementById('ordersinflight').style.display = 'block';
+      $.ajax({
+        url: "<%= Rails.application.routes.url_helpers.physician_inflight_path %>",
+        type: 'GET',
+        dataType: 'html',
+        success: function( data ) {
+          $('#ordersinflight').replaceWith($('#ordersinflight').html(data));
+        },
+        error: function(){
+          alert('There are no current orders in flight.');
+        },
+        complete: function(){
+          $('#loading').hide();
+        }
+      });
+    }
   }
-
 });
 
 $(document).on('click', '#inreview', function(event) {
-
-  if (document.getElementById('ordersinreview').style.display == 'none'){
-    document.getElementById('ordersinflight').style.display = 'none';
-    document.getElementById('ordersinreview').style.display = 'block';
-  } else {
-    document.getElementById('ordersinreview').style.display = 'none';
-  }
-
+    if (document.getElementById('ordersinreview').style.display == 'none'){
+      document.getElementById('ordersinreview').style.display = 'block';
+    } else {
+      if (document.getElementById('ordersinreview').style.display == 'block') {
+        document.getElementById('ordersinreview').style.display = 'none';
+      } else {
+        $('#loading').show();
+        if (document.getElementById('ordersinflight').style.display == 'block'){
+          document.getElementById('ordersinflight').style.display = 'none';
+        }
+        document.getElementById('ordersinreview').style.display = 'block';
+        $.ajax({
+          url: "<%= Rails.application.routes.url_helpers.physician_inreview_path %>",
+          type: 'GET',
+          dataType: 'html',
+          success: function( data ) {
+            $('#ordersinreview').replaceWith($('#ordersinreview').html(data));
+          },
+          error: function(){
+            alert('There are no current orders in review.');
+          },
+          complete: function(){
+            $('#loading').hide();
+          }
+        });
+      }
+    }
 });
 </script>
 
+  <img src="/assets/loading.png" id="loading" style="width:100%;height:100%;display:none;"/>
 
 <head>
 	<meta charset="utf-8">
@@ -88,100 +167,26 @@ $(document).on('click', '#inreview', function(event) {
           </div>
         </div>
       </div>
-  	</div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-  			<div class="row" id="green" style="position:fixed;z-index:9999;width:100%;padding-top:0px;right:0;margin:0 auto;">
-  				<div id="inflight" class="col-xs-6 centered" style="border-right: 3px solid #ccc;">
-  					<h3> ORDERS IN FLIGHT</h3>
-  				</div>
-          <div id="inreview" class="col-xs-6 centered">
-            <h3>ORDERS FOR REVIEW</h3>
-          </div>
-  			</div>
-
-    <div class="container" id="ordersinflight" style="display:none;padding-top:80px;">
-      <% @active_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point todo"></li><li class="progress-point todo"></li>
-          </ol>
-        </div>
-      </div>
-      <% end %>
-
-      <% @approved_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
-          </ol>
-        </div>
-      </div>
-      <% end %>
-
-      <% @completed_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point done"></li>
-          </ol>
-        </div>
-      </div>
-      <% end %>
-      <div class="row centered mt grid">
-      </div>
     </div>
 
-    <div class="container" id="ordersinreview" style="display:none;padding-top:80px;">
-      <% @draft_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-4">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
-        </div>
-        <div class="col-lg-7">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-      </div>
-      <% end %>
-      <div class="row centered mt grid">
-      </div>
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/bootstrap.js"></script>
+    <div class="row" id="green" style="position:fixed;z-index:9999;width:100%;padding-top:0px;right:0;margin:0 auto;">
+      <div id="inflight" class="col-xs-6 centered" style="border-right: 3px solid #ccc;">
+       <h3> ORDERS IN FLIGHT</h3>
+     </div>
+     <div id="inreview" class="col-xs-6 centered">
+      <h3>ORDERS FOR REVIEW</h3>
+    </div>
+  </div>
+
+  <div class="container" id="ordersinflight" style="padding-top:80px;"></div>
+
+  <div class="container" id="ordersinreview" style="padding-top:80px;"></div>
+
+  <script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

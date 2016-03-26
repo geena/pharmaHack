@@ -22,6 +22,8 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  config.serve_static_assets  = true
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
@@ -31,6 +33,11 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+  config.assets.enabled = true
+  config.assets.compress = true
+  config.assets.compile = true
+  config.assets.digest = true
 
 
   # Raises error for missing translations

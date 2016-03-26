@@ -1,0 +1,14 @@
+      <% @draft_orders.each do |order| %>
+      <div class="row centered mt grid">
+        <div class="col-lg-4">
+          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_order_path(order) %>
+        </div>
+        <div class="col-lg-7">
+          <h3>Drug: <%= order.order_name %></h3>
+          <h3>Patient: <%= order.patient_name %></h3>
+          <h3>First Dose Priority: <%= order.timestamp %></h3>
+        </div>
+      </div>
+      <% end %>
+      <div class="row centered mt grid">
+      </div>

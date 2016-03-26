@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   get 'barcode/order'
 
+  get 'physician/inflight'
+
+  get 'physician/inreview'
+
   get 'nurse/index'
 
   get 'pharma_tech/index'

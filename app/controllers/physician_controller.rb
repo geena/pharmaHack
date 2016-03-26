@@ -1,16 +1,11 @@
 class PhysicianController < ApplicationController
 	def index
-		@draft_orders = Order.where(status: "draft")
+	end
+
+	def inflight
 		@active_orders = Order.where(status: "active")
 		@approved_orders = Order.where(status: "approved")
 		@completed_orders = Order.where(status: "completed")
-
-		if @draft_orders.blank?
-			response1 = HTTParty.get("https://fhir-open.sandboxcernerpowerchart.com/may2015/d075cf8b-3261-481d-97e5-ba6c48d3b41f/MedicationPrescription?patient=1316024&status=draft",
-				{ verify: false,
-					headers: { 'Accept' => 'application/json' } }).parsed_response["entry"]
-			@draft_orders = get_draft_orders(response1)
-		end
 
 		if @active_orders.blank?
 			response = HTTParty.get("https://fhir-open.sandboxcernerpowerchart.com/may2015/d075cf8b-3261-481d-97e5-ba6c48d3b41f/MedicationPrescription?patient=1316034&status=active",
@@ -31,6 +26,17 @@ class PhysicianController < ApplicationController
 				{ verify: false,
 					headers: { 'Accept' => 'application/json' } }).parsed_response["entry"]
 			@completed_orders = get_completed_orders(response4)
+		end
+	end
+
+	def inreview
+		@draft_orders = Order.where(status: "draft")
+
+		if @draft_orders.blank?
+			response1 = HTTParty.get("https://fhir-open.sandboxcernerpowerchart.com/may2015/d075cf8b-3261-481d-97e5-ba6c48d3b41f/MedicationPrescription?patient=1316024&status=draft",
+				{ verify: false,
+					headers: { 'Accept' => 'application/json' } }).parsed_response["entry"]
+			@draft_orders = get_draft_orders(response1)
 		end
 	end
 
