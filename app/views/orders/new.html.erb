@@ -106,7 +106,7 @@
     <p>
       <%= f.label :drug_name %><br>
       <%= text_field_tag :order_select, '', :onkeyup => "ping_test()" %>
-      <%= f.select :order_name, [] %>
+      <%= f.select :order_name, [], {}, {:style => "max-width: 20%;"} %>
     </p>
 
     <p>
