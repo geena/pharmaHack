@@ -99,7 +99,15 @@ class OrdersController < ApplicationController
 	  @order = Order.find(params[:id])
 
 	  if @order.update(order_params)
-	    redirect_to @order
+      if params[:order][:care_team] == "physician"
+        redirect_to :controller => 'physician', :action => 'index', :notice => "Order Updated"
+      elsif params[:order][:care_team] == "nurse"
+        redirect_to :controller => 'nurse', :action => 'index', :notice => "Order Updated"
+      elsif params[:order][:care_team] == "pharma_tech"
+        redirect_to :controller => 'pharma_tech', :action => 'index', :notice => "Order Updated"
+      else
+	      redirect_to @order
+      end
 	  else
 	    render "edit"
 	  end

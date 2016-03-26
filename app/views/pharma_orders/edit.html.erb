@@ -8,7 +8,7 @@
     }
 
     </script>
-    <%= form_for :order, url: pharma_order_path(@order), method: :patch do |f| %>
+    <%= form_for :order, url: order_path(@order), method: :patch do |f| %>
 
     <h2> <%= @order.patient_name %> </h2>
 
@@ -38,6 +38,8 @@
     </p>
 
     <%= f.hidden_field :status %>
+
+    <%= f.hidden_field :care_team, value: 'pharma_tech' %>
 
     <p>
       <%= f.submit "Reject Order", :onclick => 'change_status("draft")' %>
