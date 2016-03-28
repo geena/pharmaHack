@@ -52,7 +52,7 @@
     <% @approved_orders.each do |order| %>
     <div id="skills">
       <div class="container">
-        <div class="col-lg-4">
+        <div class="col-lg-4 centered">
           <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), edit_nurse_order_path(order) %>
         </div>
         <div class="row centered">
