@@ -1,55 +1,52 @@
       <% @active_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point todo"></li><li class="progress-point todo"></li>
-          </ol>
-        </div>
-      </div>
+        <%= link_to(order_path(order)) do %>
+          <div class="row centered mt grid">
+            <div class="col-lg-3">
+              <h3>Drug: <%= order.order_name %></h3>
+              <h3>Patient: <%= order.patient_name %></h3>
+              <h3>First Dose Priority: <%= order.timestamp %></h3>
+            </div>
+            <div class="col-lg-6">
+              <ol class="progress-meter">
+                <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
+              </ol>
+            </div>
+          </div>
+        <% end %>
       <% end %>
 
       <% @approved_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
-          </ol>
-        </div>
-      </div>
+        <%= link_to(order_path(order)) do %>
+          <div class="row centered mt grid">
+            <div class="col-lg-3">
+              <h3>Drug: <%= order.order_name %></h3>
+              <h3>Patient: <%= order.patient_name %></h3>
+              <h3>First Dose Priority: <%= order.timestamp %></h3>
+            </div>
+            <div class="col-lg-6">
+              <ol class="progress-meter">
+                <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
+              </ol>
+            </div>
+          </div>
+        <% end %>
       <% end %>
 
       <% @completed_orders.each do |order| %>
-      <div class="row centered mt grid">
-        <div class="col-lg-3">
-          <%= link_to image_tag("data:image/jpeg;base64,#{order.image}", width: 200, height: 200), order_path(order) %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Drug: <%= order.order_name %></h3>
-          <h3>Patient: <%= order.patient_name %></h3>
-          <h3>First Dose Priority: <%= order.timestamp %></h3>
-        </div>
-        <div class="col-lg-6">
-          <ol class="progress-meter">
-            <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point done"></li>
-          </ol>
-        </div>
-      </div>
+        <%= link_to(order_path(order)) do %>
+          <div class="row centered mt grid">
+            <div class="col-lg-3">
+              <h3>Drug: <%= order.order_name %></h3>
+              <h3>Patient: <%= order.patient_name %></h3>
+              <h3>First Dose Priority: <%= order.timestamp %></h3>
+            </div>
+            <div class="col-lg-6">
+              <ol class="progress-meter">
+                <li class="progress-point done"></li><li class="progress-point done"></li><li class="progress-point todo"></li>
+              </ol>
+            </div>
+          </div>
+        <% end %>
       <% end %>
       <div class="row centered mt grid">
       </div>
