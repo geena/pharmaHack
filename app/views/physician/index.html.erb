@@ -100,7 +100,7 @@ $(document).on('click', '#inreview', function(event) {
       <div class="container" style="width:100%;">
         <div id="hello" class="row" style="width:100%;">
           <%= link_to ("<h1>Jarvis</h1><h2>Physician</h2>").html_safe, 
-          pharma_tech_index_path %>
+          pharma_tech_index_path, target: '_self', style: 'width:50%;display:inline-block;float:left;' %>
           <div class="nav navbar-nav" style="padding-top:55px;width:120px;float:right;">
             <li class="active" style="width:120px;">
               <%= link_to 'New Order', new_order_path, target: '_self',
