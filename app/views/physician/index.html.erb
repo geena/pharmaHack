@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <script type="text/javascript">
-$(document).ready(function() {
+
   $(document).on('click', '#inflight', function(event) {
+    alert('i got clicked again!');
     $('body').scrollTop(0);
     if (document.getElementById('ordersinflight').style.display == 'none'){
       document.getElementById('ordersinflight').style.display = 'block';
@@ -32,72 +33,7 @@ $(document).ready(function() {
       }
     }
   });
-});
 
-$(document).ready(function() {
-  $(document).on('click', '#inreview', function(event) {
-    $('body').scrollTop(0);
-    if (document.getElementById('ordersinreview').style.display == 'none'){
-      document.getElementById('ordersinreview').style.display = 'block';
-      document.getElementById('ordersinflight').style.display = 'none';
-    } else {
-      if (document.getElementById('ordersinreview').style.display == 'block') {
-        document.getElementById('ordersinreview').style.display = 'none';
-      } else {
-        $('#loading').show();
-        if (document.getElementById('ordersinflight').style.display == 'block'){
-          document.getElementById('ordersinflight').style.display = 'none';
-        }
-        $.ajax({
-          url: "<%= Rails.application.routes.url_helpers.physician_inreview_path %>",
-          type: 'GET',
-          dataType: 'html',
-          success: function( data ) {
-            $('#ordersinreview').replaceWith($('#ordersinreview').html(data));
-          },
-          error: function(){
-            alert('There are no current orders in review.');
-          },
-          complete: function(){
-            $('#loading').hide();
-          }
-        });
-        document.getElementById('ordersinreview').style.display = 'block';
-      }
-    }
-  });
-});
-
-$(document).on('click', '#inflight', function(event) {
-  $('body').scrollTop(0);
-  if (document.getElementById('ordersinflight').style.display == 'none'){
-    document.getElementById('ordersinflight').style.display = 'block';
-  } else {
-    if (document.getElementById('ordersinflight').style.display == 'block') {
-      document.getElementById('ordersinflight').style.display = 'none';
-    } else {
-      $('#loading').show();
-      if (document.getElementById('ordersinreview').style.display == 'block'){
-        document.getElementById('ordersinreview').style.display = 'none';
-      }
-      $.ajax({
-        url: "<%= Rails.application.routes.url_helpers.physician_inflight_path %>",
-        type: 'GET',
-        dataType: 'html',
-        success: function( data ) {
-          $('#ordersinflight').replaceWith($('#ordersinflight').html(data));
-        },
-        error: function(){
-          alert('There are no current orders in flight.');
-        },
-        complete: function(){
-          $('#loading').hide();
-        }
-      });
-      document.getElementById('ordersinflight').style.display = 'block';
-    }
-  }
-});
 
 $(document).on('click', '#inreview', function(event) {
     $('body').scrollTop(0);
