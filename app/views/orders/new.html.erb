@@ -84,49 +84,6 @@
                   }
                });
             });
-
-      $(document).ready(function() {
-          $("#barcode").on("click", function(event) {
-              event.preventDefault(); // don't trigger default
-
-              document.getElementById('shell').style.visibility = 'hidden';
-              document.getElementById('scanimation').style.visibility = 'visible';
-
-              // get the value inside the text field
-              var name = document.getElementById('order_patient_name').value;
-              // get the value inside the text field
-              var datefield = document.getElementById('order_dob').value;
-              if (datefield) {
-                var d = new Date(datefield);
-                var birthdate = d.toISOString().substring(0, 10);
-              } else {
-                var birthdate = "";
-              }
-
-              $.ajax({
-                  url: "<%= Rails.application.routes.url_helpers.barcode_patient_path %>",
-                  type: 'GET',
-                  dataType: 'html',
-                  data: {patient_name:name, dob:birthdate},
-                  success: function( data ) {
-                    document.getElementById('scanimation').style.visibility = 'hidden';
-                    document.getElementById('shell').style.visibility = 'visible';
-                    $('#barcode_results').replaceWith($('#barcode_results').html(data));
-
-                    var $response=$(data);
-                    var display_name = $response.filter('#patient_name').text();
-                    var display_dob = $response.filter('#dateofbirth').text();
-                    $('#order_patient_name').val (display_name);
-                    $('#order_dob').val (display_dob);
-                  },
-                  error: function(){
-                    document.getElementById('scanimation').style.visibility = 'hidden';
-                    document.getElementById('shell').style.visibility = 'visible';
-                    alert('Could not find patient '.concat(name));
-                  }
-               });
-          });
-        });
   </script>
 
   <%= form_for :order, url: orders_path do |f| %>
