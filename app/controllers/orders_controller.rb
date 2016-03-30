@@ -98,6 +98,11 @@ class OrdersController < ApplicationController
 	def update
 	  @order = Order.find(params[:id])
 
+    if params[:order][:image]
+      encoded_image = Base64.encode64(params[:order][:image].read)
+      params[:order][:image] = encoded_image
+    end
+
 	  if @order.update(order_params)
       if params[:order][:care_team] == "physician"
         redirect_to :controller => 'physician', :action => 'index', :notice => "Order Updated"

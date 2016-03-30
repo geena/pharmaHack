@@ -1,5 +1,5 @@
       <% @draft_orders.each do |order| %>
-        <%= link_to(order_path(order)) do %>
+        <%= link_to(edit_order_path(order)) do %>
           <div class="row centered mt grid">
             <div class="col-lg-3">
               <h3>Drug: <%= order.order_name %></h3>
