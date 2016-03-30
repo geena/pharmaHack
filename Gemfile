@@ -49,3 +49,5 @@ gem 'coffee-script-source', '1.8.0'
 gem 'httparty'
 
 gem 'font-awesome-rails'
+
+gem 'turbolinks'
