@@ -6,8 +6,7 @@
     if (document.getElementById('ordersinflight').style.display != 'block') {
       $('body').scrollTop(0);
       if (document.getElementById('ordersinflight').style.display == 'none'){
-        document.getElementById('ordersinflight').style.display = 'block';
-        document.getElementById('ordersinflight').setAttribute('style', "padding-top:80px;");
+        document.getElementById('ordersinflight').setAttribute('style', "display:block;padding-top:80px;");
         document.getElementById('ordersinreview').style.display = 'none';
       } else {
           $('#loading').show();
@@ -28,8 +27,7 @@
               $('#loading').hide();
             }
           });
-          document.getElementById('ordersinflight').style.display = 'block';
-          document.getElementById('ordersinflight').setAttribute('style', "padding-top:80px;");
+          document.getElementById('ordersinflight').setAttribute('style', "display:block;padding-top:80px;");
       }
     }
   });
