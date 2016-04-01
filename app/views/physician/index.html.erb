@@ -7,6 +7,7 @@
       $('body').scrollTop(0);
       if (document.getElementById('ordersinflight').style.display == 'none'){
         document.getElementById('ordersinflight').style.display = 'block';
+        document.getElementById('ordersinflight').setAttribute('style', "padding-top:80px;");
         document.getElementById('ordersinreview').style.display = 'none';
       } else {
           $('#loading').show();
@@ -28,6 +29,7 @@
             }
           });
           document.getElementById('ordersinflight').style.display = 'block';
+          document.getElementById('ordersinflight').setAttribute('style', "padding-top:80px;");
       }
     }
   });
@@ -56,6 +58,7 @@ $(document).on('click', '#inreview', function(event) {
           },
           complete: function(){
             $('#loading').hide();
+            $('body').scrollTop(0);
           }
         });
         document.getElementById('ordersinreview').style.display = 'block';
@@ -123,7 +126,7 @@ $(document).on('click', '#inreview', function(event) {
     </div>
   </div>
 
-  <div class="container" id="ordersinflight" style="padding-top:80px;"></div>
+  <div class="container" id="ordersinflight"></div>
 
   <div class="container" id="ordersinreview" style="padding-top:80px;"></div>
 
