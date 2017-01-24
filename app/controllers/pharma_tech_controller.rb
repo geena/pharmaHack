@@ -1,5 +1,11 @@
 class PharmaTechController < ApplicationController
 	def index
+		@Admin_menu = Hash.new
+		@Admin_menu["Order Workstation"] = physician_inflight_path
+		@Admin_menu["Review Orders"] = physician_inreview_path
+		@Admin_menu["Pharmacy"] = pharma_tech_index_path
+		@Admin_menu["Administration"] = nurse_index_path
+
 		@active_orders = Order.where(status: "active")
 
 		if @active_orders.blank?

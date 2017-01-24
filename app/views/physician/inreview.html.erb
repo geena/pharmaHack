@@ -1,3 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Jarvis</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top"style="width:100%;">
+      <div class="container" style="width:100%;">
+        <div id="hello" class="row" style="width:100%;">
+          <div class="nav navbar-nav" style="float:left;">
+            <li class="dropdown" id="admin_menu">
+              <a class="dropdown-toggle" style="font-size:x-large;" data-toggle="dropdown" href="#admin_menu">
+                MENU
+              </a>
+              <ul class="dropdown-menu">
+                <% @Admin_menu.each do |menu_text,menu_action| %>
+                    <li>
+                      <%= link_to menu_text, menu_action %>
+                    </li>
+                <% end %>
+              </ul>
+            </li>
+          </div>
+          <div class="nav navbar-nav" style="float:right;">
+            <li class="active">
+              <%= link_to '+', new_order_path,
+              style: 'width:100px;display:inline-block;text-align:center;font-size:xx-large;' %></li>
+          </div>
+        </div>
+      </div>
+    </div>
+
       <% @draft_orders.each do |order| %>
         <%= link_to(edit_order_path(order)) do %>
           <div class="row centered mt grid">
@@ -16,3 +71,5 @@
       <% end %>
       <div class="row centered mt grid">
       </div>
+</body>
+</html>

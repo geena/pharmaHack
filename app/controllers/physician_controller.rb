@@ -1,8 +1,19 @@
 class PhysicianController < ApplicationController
 	def index
+		@Admin_menu = Hash.new
+		@Admin_menu["Order Workstation"] = physician_inflight_path
+		@Admin_menu["Review Orders"] = physician_inreview_path
+		@Admin_menu["Pharmacy"] = pharma_tech_index_path
+		@Admin_menu["Administration"] = nurse_index_path
 	end
 
 	def inflight
+		@Admin_menu = Hash.new
+		@Admin_menu["Order Workstation"] = physician_inflight_path
+		@Admin_menu["Review Orders"] = physician_inreview_path
+		@Admin_menu["Pharmacy"] = pharma_tech_index_path
+		@Admin_menu["Administration"] = nurse_index_path
+
 		@active_orders = Order.where(status: "active")
 		@approved_orders = Order.where(status: "approved")
 		@completed_orders = Order.where(status: "completed")
@@ -30,6 +41,12 @@ class PhysicianController < ApplicationController
 	end
 
 	def inreview
+		@Admin_menu = Hash.new
+		@Admin_menu["Order Workstation"] = physician_inflight_path
+		@Admin_menu["Review Orders"] = physician_inreview_path
+		@Admin_menu["Pharmacy"] = pharma_tech_index_path
+		@Admin_menu["Administration"] = nurse_index_path
+
 		@draft_orders = Order.where(status: "draft")
 
 		if @draft_orders.blank?
